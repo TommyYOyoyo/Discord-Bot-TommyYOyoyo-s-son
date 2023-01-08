@@ -13,14 +13,9 @@ module.exports = {
         .setName('help')
         .setDescription('Get helps about how to use this bot!'),
 
-    async execute(interaction, client, listCmds) {
+    async execute(interaction, client) {
         let maxPage = 3;
         let curPage = 1;
-
-        let categories = listCmds.getCates();
-        let funCmds = listCmds.getCmds(listCmds.liCmds.categories.FUN)
-        let welcomeCmds = listCmds.getCmds(listCmds.liCmds.categories.WELCOMING)
-        let utilityCmds = listCmds.getCmds(listCmds.liCmds.categories.UTILITIES)
 
         let row = new ActionRowBuilder()
             .addComponents(
@@ -49,32 +44,35 @@ module.exports = {
                 .setLabel('Last page')
                 .setStyle(ButtonStyle.Success)
             )
-        let btns = [firstBtn, lastBtn, previousBtn, nextBtn]
+        let btns = [firstBtn, lastBtn, previousBtn, nextBtn];
+
+        // ###########################################################################
+
         let page1 = new EmbedBuilder()
             .setAuthor({
                 name: 'Help menu',
                 iconURL: 'https://i.postimg.cc/rwXj33rv/sonnnn.png'
             })
-            .setTitle(`>>> ${categories[0]} Helps`)
+            .setTitle(`>>> Fun Helps`)
             .setColor([144, 238, 144])
             .addFields({
-                name: funCmds[0][0],
-                value: funCmds[0][1]
+                name: "Kill",
+                value: "Is killing random people fun...or dangerous..??"
             }, {
-                name: funCmds[1][0],
-                value: funCmds[1][1]
+                name: "Resurrect",
+                value: "Resurrect dead people!"
             }, {
-                name: funCmds[2][0],
-                value: funCmds[2][1]
+                name: "Nuke",
+                value: "Drop nukes to some place or to some specific people!"
             }, {
-                name: funCmds[3][0],
-                value: funCmds[3][1]
+                name: "SetRR",
+                value: "Wanna secretly rickroll people? Set an secret rickrolling command!"
             }, {
-                name: funCmds[4][0],
-                value: funCmds[4][1]
+                name: "SetReplyBot",
+                value: "Setup a funny reply bot to a specific channel. (for text commands like TYS SETREPLYBOT ...): to remove, simply write Tys setreplybot."
             }, {
-                name: funCmds[5][0],
-                value: funCmds[5][1]
+                name: "Yeet",
+                value: "Yeet people off the Earth, fun!!!"
             })
             .setFooter({
                 text: `Page 1/${maxPage}. If you find any bugs, please report at https://discord.gg/wRtZ6fRhZC.`
@@ -85,23 +83,23 @@ module.exports = {
                 name: 'Help menu',
                 iconURL: 'https://i.postimg.cc/rwXj33rv/sonnnn.png'
             })
-            .setTitle(`>>> ${categories[1]} Helps`)
+            .setTitle(`>>> Welcome & Goodbye Helps`)
             .setColor([144, 238, 144])
             .addFields({
-                name: welcomeCmds[0][0],
-                value: welcomeCmds[0][1],
+                name: "SetWelcomeChannel",
+                value: "Setup a channel where the bot can send welcome messages! (Text commands): To remove, simply write Tys setwelcomechannel."
             }, {
-                name: welcomeCmds[1][0],
-                value: welcomeCmds[1][1],
+                name: "SetWelcomeImage",
+                value: "Customize the welcoming image background to the image you want!"
             }, {
-                name: welcomeCmds[2][0],
-                value: welcomeCmds[2][1],
+                name: "SetWelcomeMessage",
+                value: "Customize the welcoming message to the message you want! Here's some words that could be useful to you in the message: USER = the member's username, SERVER = this server's name."
             }, {
-                name: welcomeCmds[3][0],
-                value: welcomeCmds[3][1],
+                name: "SetByeMessage",
+                value: "Make me say something when a member leaves the server! Here's some words that could be useful to you in the message: USER = the member's username, SERVER = this server's name, TOTALMEMBERS = the total number of members in the server."
             }, {
-                name: welcomeCmds[4][0],
-                value: welcomeCmds[4][1],
+                name: "SetByeChannel",
+                value: "Customize the channel where I will send a farewell message each time a member leaves!"
             })
             .setFooter({
                 text: `Page 2/${maxPage}. If you find any bugs, please report at https://discord.gg/wRtZ6fRhZC.`
@@ -112,14 +110,14 @@ module.exports = {
                 name: 'Help menu',
                 iconURL: 'https://i.postimg.cc/rwXj33rv/sonnnn.png'
             })
-            .setTitle(`>>> ${categories[2]} Helps`)
+            .setTitle(`>>> Utilities Helps`)
             .setColor([144, 238, 144])
             .addFields({
-                name: utilityCmds[0][0],
-                value: utilityCmds[0][1],
+                name: "Info",
+                value: "Get the basic infos about the bot."
             }, {
-                name: utilityCmds[1][0],
-                value: utilityCmds[1][1],
+                name: "Invites",
+                value: "Get the amount of invites a user has."
             }, {
                 name: '\u200B',
                 value: '\u200B'
@@ -132,7 +130,10 @@ module.exports = {
                 text: `Page 3/${maxPage}. If you find any bugs, please report at https://discord.gg/wRtZ6fRhZC.`
             })
 
-        let pages = [page1, page2, page3]
+        let pages = [page1, page2, page3];
+
+
+        // ######################################################################
 
         let secs = 0;
         const endTime = 15
@@ -239,6 +240,5 @@ module.exports = {
                 })
             });
         })
-
     }
 };

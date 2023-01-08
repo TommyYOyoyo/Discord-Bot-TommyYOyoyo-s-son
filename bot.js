@@ -12,13 +12,12 @@
 
 
 
-var commands = require('./js/commands.js');
-var replies = require('./js/replies.js');
-var db = require('./js/db.js');
-var utils = require('./js/utils.js');
-var replbot = require('./js/replyBot.js');
-var WelcomeGen = require('./js/welcomeImage.js');
-var listCmds = require('./js/listCmds');
+const commands = require('./js/commands.js');
+const replies = require('./js/replies.js');
+const db = require('./js/db.js');
+const utils = require('./js/utils.js');
+const replbot = require('./js/replyBot.js');
+const WelcomeGen = require('./js/welcomeImage.js');
 
 // Require the necessary discord.js classes
 
@@ -145,7 +144,7 @@ client.on('interactionCreate', async interaction => {
                 for (const file of commandFiles) {
                     if (file == `${interaction.commandName}.js`) {
                         let thisSlash = require(`./commands/${file}`);
-                        thisSlash.execute(interaction, client, listCmds)
+                        thisSlash.execute(interaction, client);
                     }
                 }
                 break;
@@ -427,7 +426,7 @@ client.on("messageCreate", (message) => {
 
                     switch (true) {
                         case arg == 'help':
-                            commands.help(message, client).catch(err => console.error())
+                            commands.help(message);
                             break;
 
                         case arg.startsWith("resurrect"):
