@@ -104,7 +104,7 @@ client.on('ready', () => {
     })();
     setInterval(() => client.user.setPresence({
         activities: [{
-            name: `tys | Slash commands`,
+            name: `Slash Commands | No longer supporting text commands!`,
             type: ActivityType.Playing
         }],
         status: 'online',
