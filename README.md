@@ -1,6 +1,6 @@
 ## Discord-Bot-TommyYOyoyo-s-son
 
-**NOTE: this bot will be no longer supporting text commands!
+**NOTE: this bot will be no longer supporting text commands!**
 
 TommyYOyoyo's son is a Discord Bot made by me, the project is still in beta, so there may be bugs.
 
