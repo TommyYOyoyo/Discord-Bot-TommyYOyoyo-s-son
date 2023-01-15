@@ -1,4 +1,4 @@
-// All commands
+// All commands : * DEPRECATED CODE !
 
 const {
     ActionRowBuilder,
