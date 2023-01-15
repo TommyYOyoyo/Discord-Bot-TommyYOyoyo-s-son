@@ -406,5 +406,4 @@ module.exports = {
 
         message.reply(`${content}`);
     }
-    
 }
