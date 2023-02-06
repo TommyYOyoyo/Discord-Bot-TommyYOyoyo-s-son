@@ -28,7 +28,7 @@ module.exports = {
                 { name: 'Creation date', value: creationDate.toString(), inline: true },
                 { name: 'Developer:', value: 'TommyYOyoyo#8835', inline: true },
                 { name: 'Servers count:', value: guildCounts.toString(), inline: true },
-                { name: 'Bot prefix:', value: 'tys', inline: true },
+                { name: 'Bot prefix:', value: 'Slash command (/)', inline: true },
                 { name: 'Time since last restart:', value: `${uptimeHours.toString()}h`, inline: true },
                 { name: 'Source code:', value: sourceCode, inline: true },
             )

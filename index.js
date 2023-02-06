@@ -7,6 +7,6 @@ const manager = new ShardingManager('./bot.js', {
     totalShards: 'auto'
 })
 
-manager.on('shardCreate', shard => console.log(`[SHARDING CREATION] Shard created and launcher ${shard.id}`));
+manager.on('shardCreate', shard => console.log(`[SHARDING CREATION] Shard created and launched ${shard.id}`));
 
 manager.spawn();

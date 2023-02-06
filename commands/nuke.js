@@ -72,7 +72,7 @@ module.exports = {
                 if (curSec >= cooldown) {
                     db.setKey(`user.${interaction.user.id}.nukeCooldown`, `${curSec + 60}`).then(() => {
 
-                        if (place == undefined) {
+                        if (place == undefined && targets.length == 0) {
                             place = `${interaction.user}'s house`
                         }
 
@@ -85,14 +85,10 @@ module.exports = {
                         if(targets != []){
                             if (place != undefined){
                                 specifiedTgt = `${place}, also to`
-                                targets.forEach(item => {
-                                    specifiedTgt = specifiedTgt.concat(', ', item)
-                                })
+                                specifiedTgt = targets.join(",");
                             } else {
-                                specifiedTgt = ''
-                                targets.forEach(item => {
-                                    specifiedTgt = specifiedTgt.concat(', ', item)
-                                })
+                                specifiedTgt = '';
+                                specifiedTgt = targets.join(",");
                             }
                         } else if (place != undefined){
                             specifiedTgt = place.toString();

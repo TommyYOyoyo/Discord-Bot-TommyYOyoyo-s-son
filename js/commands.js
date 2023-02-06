@@ -36,9 +36,12 @@ var yeetGifLinks = [
 ]
 
 module.exports = {
-    help: async function (message) {
+    redirectToSlash: function (message) {
         message.reply('This command is only available in slash commands, sorry for the inconvenience! To use a slash command, please type "/" and choose the desired command from the list given.');
         return;
+    },
+    help: async function (message) {
+        this.redirectToSlash(message);
     },
     kill: function ({
         arg,
@@ -136,91 +139,8 @@ module.exports = {
             }
         }
     },
-    nuke: function ({
-        arg,
-        message,
-        originalArg,
-        curSec,
-        cooldown
-    }) {
-        utils.checkAlive(message.author.id).then(alive => {
-            if (alive == true) {
-                if (curSec >= cooldown) {
-                    db.setKey(`user.${message.author.id}.nukeCooldown`, `${curSec + 60}`).then(() => {
-                        let place = originalArg.slice("nuke".length + 1)
-
-                        if (place == "") {
-                            place = `${message.author}'s house`
-                        }
-                        let isPerson = false
-                        let isGroup = false
-                        let targets = undefined
-
-                        if (place.startsWith("<@") && place.length == 21) {
-                            isPerson = true
-                        } else if (place.startsWith("<@") && place.indexOf(",") > -1) {
-                            isGroup = true
-                            targets = place.split(',').map((str) => {
-                                return str;
-                            })
-                            targets.forEach(item => {
-                                item.trim()
-                            })
-                        }
-
-                        for (let i = 0; i < targets.length; i++) {
-                            if (i >= 8) {
-                                message.reply("Hey, don't be too ambitious, you can only nuke 8 people at same time!")
-                                return;
-                            }
-                        }
-
-                        let randnum = Math.floor(Math.random() * 100)
-                        let img = undefined
-
-                        let reply = ""
-                        if (randnum > 50 && randnum <= 90) {
-                            reply = `${message.author} dropped a nuke to ${place}, TOTAL DESTRUCTION! \n\nPOV ${place}:`
-                            img = `${nukeGifLinks[Math.floor(Math.random() * nukeGifLinks.length)]}`
-                            if (isPerson == true) {
-                                place = place.replace("<@", "").replace(">", "")
-                                db.setKey(`user.${place}.alive`, '0')
-                            } else if (isGroup == true) {
-                                targets.forEach(item => {
-                                    db.setKey(`user.${item.replace("<@", "").replace(">", "").trim()}.alive`, '0')
-                                })
-                            }
-                        } else if (randnum > 20 && randnum < 30) {
-                            reply = `${message.author} tried to drop a nuke but the Navy intercepted them. **WHAT A KARMA!**`
-                        } else if (randnum > 30 && randnum <= 49) {
-                            reply = (`${message.author} dropped the nuke to ${place} but the malprogrammed nuke flew back to their plane. **TO BE CONTINUED...**`)
-                            db.setKey(`user.${message.author.id}.alive`, '0')
-                        } else if (randnum > 90 && randnum <= 100) {
-                            reply = (`${message.author} dropped the nuke to ${place} but everyone there magically survived! **MAGIK!** \n\nPOV ${place}:`)
-                            img = "https://c.tenor.com/8gpittE_R9oAAAAM/running-dodging.gif"
-                        } else {
-                            reply = (`Bro stop dreaming nukes and go get a job man :joy:`)
-                        }
-                        let randomColor1 = Math.floor(Math.random() * 255)
-                        let randomColor2 = Math.floor(Math.random() * 255)
-                        let randomColor3 = Math.floor(Math.random() * 255)
-                        let nukeMsg = new EmbedBuilder()
-                            .setColor([randomColor1, randomColor2, randomColor3])
-                            .setTitle(`${message.author.username}'s nuking process...`)
-                            .setDescription(`${reply}`)
-                            .setImage(img)
-
-                        message.reply({
-                            embeds: [nukeMsg]
-                        })
-                    })
-                } else {
-                    message.reply(`Yo slow down, your factory can only make one nuke per minute loll. You still need to wait **${Math.floor(cooldown-curSec)}** seconds before you could throw another nuke.`)
-                }
-            } else {
-                message.reply("Hey, you are dead. Dead people can't nuke LMAO")
-            }
-        })
+    nuke: function (message) {
+        this.redirectToSlash(message);
     },
     setReplybot: function (PermissionsBitField, message, arg) {
         if (message.member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
@@ -373,7 +293,7 @@ module.exports = {
                 inline: true
             }, {
                 name: 'Bot prefix:',
-                value: 'tys',
+                value: 'Slash command (/)',
                 inline: true
             }, {
                 name: 'Time since last restart:',

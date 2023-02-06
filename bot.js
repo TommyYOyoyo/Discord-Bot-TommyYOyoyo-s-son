@@ -1,17 +1,5 @@
 // main js
 
-// TO DO:
-//       welcome message,
-//       sharding,
-//       help command interaction cooldown reset 15secs,
-//       yeet command,
-//       profile,
-//       currency,
-//       invites tracker
-// delete useless databases
-
-
-
 const commands = require('./js/commands.js');
 const replies = require('./js/replies.js');
 const db = require('./js/db.js');
@@ -464,21 +452,7 @@ client.on("messageCreate", (message) => {
                             break;
 
                         case arg.startsWith("nuke"):
-                            db.getKey(`user.${message.author.id}.nukeCooldown`).then(cooldown => {
-                                if (cooldown == undefined || cooldown == NaN || cooldown == null) {
-                                    db.setKey(`user.${message.author.id}.nukeCooldown`, `0`)
-                                } else {
-                                    if (message.channel.permissionsFor(message.client.user).has(PermissionsBitField.Flags.EmbedLinks)) {
-                                        commands.nuke({
-                                            arg: arg,
-                                            message: message,
-                                            originalArg: originalArg,
-                                            curSec: curSec,
-                                            cooldown: cooldown
-                                        });
-                                    } else {}
-                                }
-                            })
+                            commands.nuke(message);
                             break;
 
                         case arg.startsWith('setrr'):
