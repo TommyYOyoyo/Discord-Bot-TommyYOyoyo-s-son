@@ -492,7 +492,7 @@ client.on("messageCreate", (message) => {
                             break;
 
                         case (arg.startsWith(rrcmd)):
-                            commands.replyRR(message, arg);
+                            message.channel.send('https://tenor.com/view/rickroll-roll-rick-never-gonna-give-you-up-never-gonna-gif-22954713');
                             break;
 
                         case (arg.startsWith('invites')):

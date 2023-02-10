@@ -33,7 +33,7 @@ module.exports = {
                 { name: 'Source code:', value: sourceCode, inline: true },
             )
             .setFooter({
-                text: 'Type "tys help" to get helps about the commands available!!'
+                text: 'Type "/help" to get helps about the commands available!!'
             })
         interaction.reply({embeds: [msg]})
     }

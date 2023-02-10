@@ -105,7 +105,7 @@ module.exports = {
                         } else if (randnum > 20 && randnum < 30) {
                             reply = `${interaction.user} tried to drop a nuke but the Navy intercepted them. **WHAT A KARMA!**`
                         } else if (randnum > 30 && randnum <= 49) {
-                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but the malprogrammed nuke flew back to their plane. **TO BE CONTINUED...**`)
+                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but the poorly programmed nuke flew back to their plane. **TO BE CONTINUED...**`)
                             db.setKey(`user.${interaction.user.id}.alive`, '0')
                         } else if (randnum > 90 && randnum <= 100) {
                             reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but everyone there magically survived! **MAGIK!** \n\nPOV ${place}:`)

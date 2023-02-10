@@ -158,24 +158,6 @@ module.exports = {
             message.reply('RRkey successfully set!')
         })
     },
-    replyRR: function (message, arg) {
-        setTimeout(() => {
-            message.channel.send('Proceeding').then((rmsg) => {
-                setTimeout(() => {
-                    rmsg.edit('Proceeding.')
-                }, 100);
-                setTimeout(() => {
-                    rmsg.edit('Proceeding..')
-                }, 200);
-                setTimeout(() => {
-                    rmsg.edit('Proceeding...')
-                }, 300);
-                setTimeout(() => {
-                    rmsg.edit('https://tenor.com/view/rickroll-roll-rick-never-gonna-give-you-up-never-gonna-gif-22954713')
-                }, 400)
-            })
-        }, 50);
-    },
     //end
     setWelcome: function (PermissionsBitField, message, arg) {
         if (message.member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
@@ -305,7 +287,7 @@ module.exports = {
                 inline: true
             }, )
             .setFooter({
-                text: 'Type "tys help" to get helps about the commands available!!'
+                text: 'Type "/help" to get helps about the commands available!!'
             })
         message.reply({
             embeds: [msg]

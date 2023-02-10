@@ -34,7 +34,7 @@ module.exports = {
         intents: [{
             tag: "shut",
             patterns: ["shut up", "stfu", "shut yo", "shut", "shut the fuck up"],
-            answers: ["no you.", "ok", "nah im never going to stfu its literally impossible", "no pls", "nah sry", "ok", "no", "no you", "umm", ".", "_ _", "*😏*", ":skull:", 'Alrighty my bad sorry', "Let's move on anther subject.", "Nah, I want to keep annoying you :)", "Um ok", ":skull: :skull: :skull:"],
+            answers: ["no you.", "ok", "nah im never going to stfu its literally impossible", "no pls", "nah sry", "ok", "no", "no you", "umm", ".", "_ _", "*😏*", ":skull:", 'Alrighty my bad sorry', "Let's move on another subject.", "Nah, I want to keep annoying you :)", "Um ok", ":skull: :skull: :skull:"],
             startorhas: 'has',
             newpatterns: null,
             newanswers: null,
