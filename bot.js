@@ -52,7 +52,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of commandFiles) {
     const slashCmd = require(`./commands/${file}`);
     slashCmds.push(slashCmd.data.toJSON());
-    console.log(`[Slash Commands Reg] Successfully registered ${slashCmd}`)
+    console.log(`${new Date().toString()} [Slash Commands Reg] Successfully registered ${slashCmd} \n`)
 }
 
 const prefix = 'tys';
@@ -62,20 +62,20 @@ client.login(process.env.BOT_TOKEN);
 
 var http = require('http');
 
-http.createServer(function (req, res) {
-    res.write("[STATUS] Online");
+http.createServer(function (req, res) { 
+    res.write(`${new Date().toString()} [STATUS] Online \n`);
     res.end();
 }).listen(8085);
 
 // When the client is ready, run this code (only once)
 client.on('ready', () => {
-    console.log('[Ready] Ready!!!!');
+    console.log(`${new Date().toString()} [Ready] Ready!!!! \n`);
     const rest = new REST({
         version: '10'
     }).setToken(process.env.BOT_TOKEN);
     (async () => {
         try {
-            console.log(`[Slash Commands] Started refreshing ${slashCmds.length} application (/) commands.`);
+            console.log(`${new Date().toString()} [Slash Commands] Started refreshing ${slashCmds.length} application (/) commands. \n`);
 
             let data = await rest.put(
                 Routes.applicationCommands(client.user.id), {
@@ -83,7 +83,7 @@ client.on('ready', () => {
                 },
             );
 
-            console.log(`[Slash Commands] Successfully reloaded ${data.length} application (/) commands.`);
+            console.log(`${new Date().toString()} [Slash Commands] Successfully reloaded ${data.length} application (/) commands. \n`);
 
         } catch (error) {
             console.error(error);
@@ -101,7 +101,7 @@ client.on('ready', () => {
 
 //Rate limit alert
 client.rest.on('rateLimited', (info) => {
-    console.log(`[RATE]Rate limited!!!!!!!!!!!!! \n ${info}`)
+    console.log(`${new Date().toString()} [RATE] Rate limited!!!!!!!!!!!!! ${info} \n`)
     return;
 })
 
@@ -114,7 +114,7 @@ client.on('interactionCreate', async interaction => {
         if (value != `${interaction.user.username}`) {
 
             db.setKey(`user.${interaction.user.id}`, `${interaction.user.username}`).then(async () => {
-                console.log("[SIGNIN] NEW USER");
+                console.log(`${new Date().toString()} [SIGNIN] NEW USER \n`);
                 await db.setKey(`user.${interaction.user.id}.alive`, '1');
                 await db.setKey(`user.${interaction.user.id}.resurrectCooldown`, '0');
                 await db.setKey(`user.${interaction.user.id}.killCooldown`, '0');
@@ -388,7 +388,7 @@ client.on("messageCreate", (message) => {
                     if (value != `${message.author.username}`) {
 
                         db.setKey(`user.${message.author.id}`, `${message.author.username}`).then(async () => {
-                            console.log("[SIGNIN] NEW USER");
+                            console.log(`${new Date().toString()} [SIGNIN] NEW USER \n`);
                             await db.setKey(`user.${message.author.id}.alive`, '1');
                             await db.setKey(`user.${message.author.id}.resurrectCooldown`, '0');
                             await db.setKey(`user.${message.author.id}.killCooldown`, '0');
@@ -404,7 +404,7 @@ client.on("messageCreate", (message) => {
                     if (value != `${message.guild.name}`) {
 
                         db.setKey(`server.${message.guild.id}`, `${message.guild.name}`).then(() => {
-                            console.log('[GUILDS] Registered to a new guild(Discord Server).')
+                            console.log(`${new Date().toString()}[GUILDS] Registered to a new guild(Discord Server). \n`)
                         });
                     }
                 });

@@ -13,9 +13,9 @@ module.exports = {
         let guildCounts = client.guilds.cache.size;
         let sourceCode = 'https://github.com/TommyYOyoyo/TommyYOyoyo-s-son-Bot';
         let uptimeSeconds = ((client.uptime) / 1000); 
-        console.log(`[DEBUG] UptimeSeconds = ${uptimeSeconds}, uptime = ${client.uptime}`);
+        console.log(`${new Date().toString()} [DEBUG] UptimeSeconds = ${uptimeSeconds}, uptime = ${client.uptime} \n`);
         let uptimeHours = (uptimeSeconds / 3600).toFixed(2);
-        console.log(`[DEBUG] UptimeHours = ${uptimeHours}`);
+        console.log(`${new Date().toString()} [DEBUG] UptimeHours = ${uptimeHours} \n`);
 
         let msg = new EmbedBuilder()
             .setTitle(`Informations about ${client.user.username}`)
