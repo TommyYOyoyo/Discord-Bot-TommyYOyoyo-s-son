@@ -17,7 +17,7 @@ var nukeGifLinks = ["https://c.tenor.com/giN2CZ60D70AAAAC/explosion-mushroom-clo
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('nuke')
-        .setDescription("Send a nuke to a place, a person or a group of people!")
+        .setDescription("Drop a nuke to a place, a person or a group of people!")
         .addStringOption(option =>
             option.setName('place')
             .setDescription('Place(s) you want to nuke')
@@ -56,63 +56,85 @@ module.exports = {
             .setRequired(false)),
 
     async execute(interaction, curSec, cooldown) {
-        let place = interaction.options.getString('place')
+        // get place
+        let place = interaction.options.getString('place');
+        let duplicatedTargets = [];
+        // get all users and append each of them in the array
+        for (let i = 0; i <= 8; i++) if (interaction.options.getUser(`target${i}`) != undefined) duplicatedTargets.push(interaction.options.getUser(`target${i}`));
+        // remove duplicates
+        let targets = Array.from(new Set(duplicatedTargets));
+        // detect if there is no value entered
+        if (targets.length == 0 && place == null) place = `${interaction.user}'s house`;
 
-        let targets = [];
-        
-        for(let i = 0; i < 8; i++){
-            let target = interaction.options.getUser(`target${i}`)
-            if (target != undefined){
-                targets.push(target)
-            }
-        }
-
+        // check if user is alive
         utils.checkAlive(interaction.user.id).then(alive => {
+            // if user is alive
             if (alive == true) {
+                // if cooldown is over
                 if (curSec >= cooldown) {
+                    // restart cooldown
                     db.setKey(`user.${interaction.user.id}.nukeCooldown`, `${curSec + 60}`).then(() => {
 
-                        if (place == undefined && targets.length == 0) {
-                            place = `${interaction.user}'s house`
-                        }
+                        let randnum = Math.floor(Math.random() * 100); // random probability 
+                        let gif; 
+                        let reply; // replying message
+                        let specifiedTgt; // all the targets in one string 
 
-                        let randnum = Math.floor(Math.random() * 100)
-                        let img;
-
-                        let reply;
-                        let specifiedTgt;
-
-                        if(targets != []){
-                            if (place != undefined){
-                                specifiedTgt = `${place}, also to`
-                                specifiedTgt = targets.join(",");
-                            } else {
-                                specifiedTgt = '';
-                                specifiedTgt = targets.join(",");
+                        // setting up the specifiedTgt
+                        if(targets.length != 0){
+                            // creating a string that contains all victim targets
+                            victims = "";
+                            switch (targets.length){
+                                case 1:
+                                    victims += `${targets[0]}`; break;
+                                case 2:
+                                    victims += `${targets[0]} and ${targets[1]}`; break;
+                                case 3:
+                                    victims += `${targets[0]}, ${targets[1]} and ${targets[2]}`; break;
+                                // >= 4 ppl
+                                default:
+                                    // until 3 elements before the end
+                                    for (let i = 0; i < targets.length - 3; i++) {
+                                        victims += `${targets[i]}, `;
+                                    }
+                                    // last 3 elements
+                                    victims += `${targets[targets.length-3]}, ${targets[targets.length-2]} and ${targets[targets.length-1]}`;
+                                    break;
                             }
-                        } else if (place != undefined){
-                            specifiedTgt = place.toString();
+
+                            if (place != null){
+                                specifiedTgt = `${place} and also to `
+                                specifiedTgt += victims;
+                            } else {
+                                specifiedTgt = victims;
+                            }
+                        } else {
+                            specifiedTgt = place;
                         }
 
-                        if (randnum > 50 && randnum <= 90) {
-                            reply = `${interaction.user} dropped a nuke to ${specifiedTgt}, TOTAL DESTRUCTION! \n\nPOV ${specifiedTgt}:`
-                            img = `${nukeGifLinks[Math.floor(Math.random() * nukeGifLinks.length)]}`
+                        // replies for the command
+                        if (randnum > 50 && randnum <= 95) {
+                            reply = `${interaction.user} dropped a nuke to ${specifiedTgt}, TOTAL DESTRUCTION! \n\n**POV** the nuclear strike zone:`;
+                            gif = `${nukeGifLinks[Math.floor(Math.random() * nukeGifLinks.length)]}`;
+                            // eliminate targets
                             if (targets != []) {
                                 targets.forEach(el => {
-                                    db.setKey(`user.${el.id}.alive`, '0')
+                                    db.setKey(`user.${el.id}.alive`, '0');
                                 })
                             }
                         } else if (randnum > 20 && randnum < 30) {
-                            reply = `${interaction.user} tried to drop a nuke but the Navy intercepted them. **WHAT A KARMA!**`
+                            reply = `${interaction.user} tried to drop a nuke but the Navy intercepted them. **WHAT A KARMA!**`;
                         } else if (randnum > 30 && randnum <= 49) {
-                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but the poorly programmed nuke flew back to their plane. **TO BE CONTINUED...**`)
-                            db.setKey(`user.${interaction.user.id}.alive`, '0')
-                        } else if (randnum > 90 && randnum <= 100) {
-                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but everyone there magically survived! **MAGIK!** \n\nPOV ${place}:`)
-                            img = "https://c.tenor.com/8gpittE_R9oAAAAM/running-dodging.gif"
+                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but the poorly programmed nuke flew back to their plane. **TO BE CONTINUED...**`);
+                            db.setKey(`user.${interaction.user.id}.alive`, '0');
+                        } else if (randnum > 95 && randnum <= 100) {
+                            reply = (`${interaction.user} dropped the nuke to ${specifiedTgt} but everyone there magically survived! **MAGIK!** \n\nPOV ${place}:`);
+                            gif = "https://c.tenor.com/8gpittE_R9oAAAAM/running-dodging.gif";
                         } else {
-                            reply = (`Bro stop dreaming nukes and go get a job man :joy:`)
+                            reply = (`Bro stop dreaming about nukes and go get a job man :joy:`);
                         }
+
+                        // embedded message generation
                         let randomColor1 = Math.floor(Math.random() * 255)
                         let randomColor2 = Math.floor(Math.random() * 255)
                         let randomColor3 = Math.floor(Math.random() * 255)
@@ -120,15 +142,19 @@ module.exports = {
                             .setColor([randomColor1, randomColor2, randomColor3])
                             .setTitle(`${interaction.user.username}'s nuking process...`)
                             .setDescription(`${reply}`)
-                            .setImage(img)
+                            .setImage(gif)
 
+                        // message reply
                         interaction.reply({
                             embeds: [nukeMsg]
                         })
+
                     })
+                // cooldown is not over
                 } else {
-                    interaction.reply(`Yo slow down, your factory can only make one nuke per minute loll. You still need to wait **${Math.floor(cooldown-curSec)}** seconds before you could throw another nuke.`)
+                    interaction.reply(`Yo slow down, your factory is still manufacturing the nuke lol. You still need to wait **${Math.floor(cooldown-curSec)}** seconds before you could throw another nuke.`)
                 }
+            // user is dead
             } else {
                 interaction.reply("Hey, you are dead. Dead people can't nuke LMAO")
             }
