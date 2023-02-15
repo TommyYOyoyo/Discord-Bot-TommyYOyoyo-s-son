@@ -53,7 +53,7 @@ module.exports = {
     genWelcomeImg: async function (member, wimg) {
         function decideLength(len) {
             if (len < 5) {
-                return 80;
+                return 160;
             } else if (len < 8){
                 return len * 20
             } else if (len >= 8 && len < 10){
