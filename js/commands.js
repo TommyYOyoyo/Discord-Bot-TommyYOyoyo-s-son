@@ -248,7 +248,7 @@ module.exports = {
     info: function (message, client) {
         let creationDate = client.user.createdAt;
         let guildCounts = client.guilds.cache.size;
-        let sourceCode = 'https://github.com/TommyYOyoyo/TommyYOyoyo-s-son-Bot';
+        let sourceCode = 'https://github.com/TommyYOyoyo/Discord-Bot-TommyYOyoyo-s-son';
         let uptimeSeconds = ((client.uptime) / 1000);
         console.log(`${new Date().toString()} [DEBUG] UptimeSeconds = ${uptimeSeconds}, uptime = ${client.uptime} \n`);
         let uptimeHours = (uptimeSeconds / 3600).toFixed(2);

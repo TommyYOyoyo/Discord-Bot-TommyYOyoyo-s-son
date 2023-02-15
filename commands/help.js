@@ -69,7 +69,7 @@ module.exports = {
                 value: "Wanna secretly rickroll people? Set an secret rickrolling command!"
             }, {
                 name: "SetReplyBot",
-                value: "Setup a funny reply bot to a specific channel. (for text commands like TYS SETREPLYBOT ...): to remove, simply write Tys setreplybot."
+                value: "Setup a funny reply bot to a specific channel."
             }, {
                 name: "Yeet",
                 value: "Yeet people off the Earth, fun!!!"
@@ -86,17 +86,20 @@ module.exports = {
             .setTitle(`>>> Welcome & Goodbye Helps`)
             .setColor([144, 238, 144])
             .addFields({
+                name: "Setup Guide:",
+                value: `1. Use the commands "SetWelcomeChannel" and "SetByeCHannel" to setup the channel. \n 2. Use the commands "SetWelcomeMessage" and "SetByeMessage" to add customize the message that will be sent. \n 3. Use the commmand "SetWelcomeImage to make a customized welcoming canvas.`
+            }, {
                 name: "SetWelcomeChannel",
-                value: "Setup a channel where the bot can send welcome messages! (Text commands): To remove, simply write Tys setwelcomechannel."
+                value: "Setup a channel where the bot can send welcome messages!"
             }, {
                 name: "SetWelcomeImage",
                 value: "Customize the welcoming image background to the image you want!"
             }, {
                 name: "SetWelcomeMessage",
-                value: "Customize the welcoming message to the message you want! Here's some words that could be useful to you in the message: USER = the member's username, SERVER = this server's name."
+                value: "Customize the welcoming message to the message you want! "
             }, {
                 name: "SetByeMessage",
-                value: "Make me say something when a member leaves the server! Here's some words that could be useful to you in the message: USER = the member's username, SERVER = this server's name, TOTALMEMBERS = the total number of members in the server."
+                value: "Make me say something when a member leaves the server!"
             }, {
                 name: "SetByeChannel",
                 value: "Customize the channel where I will send a farewell message each time a member leaves!"
