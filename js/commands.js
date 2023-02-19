@@ -73,7 +73,7 @@ module.exports = {
                                     } else {
                                         let randnum = Math.floor(Math.random() * 100)
                                         if (randnum > 50 && randnum <= 100) {
-                                            message.reply(`${message.author} blow off the head of ${target} with a shotgun, oof `)
+                                            message.reply(`${message.author} blew off the head of ${target} with a shotgun, oof `)
                                             target = target.replace("<@", "").replace(">", "")
                                             db.setKey(`user.${target}.alive`, '0')
                                         } else if (randnum > 20 && randnum <= 50) {

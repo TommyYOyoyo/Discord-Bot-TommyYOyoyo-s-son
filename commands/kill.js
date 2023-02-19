@@ -32,7 +32,7 @@ module.exports = {
                                 } else {
                                     let randnum = Math.floor(Math.random() * 100)
                                     if (randnum > 50 && randnum <= 100) {
-                                        interaction.reply(`${interaction.user} blow off the head of ${target} with a shotgun, oof `)
+                                        interaction.reply(`${interaction.user} blew off the head of ${target} with a shotgun, oof `)
                                         db.setKey(`user.${target.id}.alive`, '0')
                                     } else if (randnum > 20 && randnum <= 50) {
                                         interaction.reply(`${target} walked away before ${interaction.user} could kill them `)
