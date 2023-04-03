@@ -2,7 +2,7 @@
 
 ***NOTE: this bot will be no longer supporting text commands!**
 
-TommyYOyoyo's son is a Discord Bot made by me, the project is still in beta, so there may be bugs.
+TommyYOyoyo's son is a Discord Bot made by me, the project is still in alpha, so there may be bugs.
 
 ![](https://user-images.githubusercontent.com/79941840/179247399-fe829843-9e42-4a63-8e44-0291b28c7ab6.png)
 
