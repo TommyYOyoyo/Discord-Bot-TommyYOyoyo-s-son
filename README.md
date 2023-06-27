@@ -1,9 +1,8 @@
 # Discord-Bot-TommyYOyoyo-s-son
 
-### This bot is currently under a remake that fixes most of the issues.
+#### This bot is currently under a remake that will fix most of the issues.
 
-### NOTE: this bot will no longer be supporting text commands!**
-
+#### NOTE: this bot will no longer be supporting text commands!
 
 TommyYOyoyo's son is a Discord Bot made by me, the project is still in alpha, so there may be bugs.
 
