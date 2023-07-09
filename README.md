@@ -5,7 +5,7 @@
 
 TommyYOyoyo's son is a Discord Bot I made for fun. The project is still not completed, so there may be a lot of bugs.
 
-## Main modules and libraries used
+## Main modules, libraries and frameworks used
 - Node.JS
 - Discord.JS
 - MongoDB
