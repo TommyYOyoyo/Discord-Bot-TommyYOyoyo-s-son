@@ -10,10 +10,10 @@ TommyYOyoyo's son is a Discord Bot I made for fun. The project is still not comp
 - [x] Help command
 - [x] New database
 - [x] New file structure
-- [] Utilities commands
-- [] Welcome-Goodbye commands
-- [] Miscellaneous commands
-- [] Chatbot \n
+- [ ] Utilities commands
+- [ ] Welcome-Goodbye commands
+- [ ] Miscellaneous commands
+- [ ] Chatbot \n
 
 ## Main modules, libraries and frameworks used
 - Node.JS
