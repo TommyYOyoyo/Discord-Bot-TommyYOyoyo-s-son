@@ -2,6 +2,7 @@
 
 ##### Rewrite in progress!!! 
 
+#
 TommyYOyoyo's son is a Discord Bot I made for fun. The project is still not completed, so there may be a lot of bugs.
 
 ### Rewrite status:
