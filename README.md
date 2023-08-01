@@ -5,15 +5,15 @@
 TommyYOyoyo's son is a Discord Bot I made for fun. The project is still not completed, so there may be a lot of bugs.
 
 ### Rewrite status:
-[x] Core functions
-[x] Fun commands
-[x] Help command
-[x] New database
-[x] New file structure
-[] Utilities commands
-[] Welcome-Goodbye commands
-[] Miscellaneous commands
-[] Chatbot
+- [x] Core functions
+- [x] Fun commands
+- [x] Help command
+- [x] New database
+- [x] New file structure
+- [] Utilities commands
+- [] Welcome-Goodbye commands
+- [] Miscellaneous commands
+- [] Chatbot \n
 
 ## Main modules, libraries and frameworks used
 - Node.JS
