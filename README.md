@@ -1,6 +1,17 @@
 # Discord-Bot-TommyYOyoyo-s-son
 
-#### This bot is currently under a remake that will fix most of the issues.
+#### Currently under a rewrite that will patch most of the issues and that will implement MongoDB!
+
+### Rewrite status:
+- [x] Core functions
+- [x] Fun commands
+- [x] Help command
+- [x] New database
+- [x] New file structure
+- [ ] Utilities commands
+- [ ] Welcome-Goodbye commands
+- [ ] Miscellaneous commands
+- [ ] Chatbot
 
 #### NOTE: this bot will no longer be supporting text commands!
 
